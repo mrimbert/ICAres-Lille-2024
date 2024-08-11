@@ -14,9 +14,9 @@
 
 </head>
 
-<body class="font-abeezee bg-index bg-cover xl:bg-center">
-    <div class="flex flex-row justify-center gap-64">
-        <div class="flex flex-col max-w-screen-lg place-items-start">
+<body class="font-abeezee bg-index bg-cover xl:bg-center overflow-x-hidden">
+    <div class="flex xl:flex-row flex-col justify-center xl:gap-64 gap-32 place-items-center">
+        <div class="flex xl:flex-col flex-row xl:max-w-screen-lg xl:place-items-start max-w-screen-sm">
             <div>
                 <img src="{%static '/logo/logo.png'%}" alt="Logo Icares">
             </div>
@@ -25,7 +25,21 @@
             </div>
         </div>
 
-        <div class="flex flex-col text-white text-2xl max-w-prose">
+        <div class="flex flex-col text-white text-2xl xl:max-w-prose max-w-screen-sm px-3">
+
+            <div class="xl:hidden block">
+            <div class="grid grid-rows-2 place-items-center gap-10">
+                <a class="inline-flex border rounded-lg place-items-center bg-primary hover:bg-secondary duration-500 w-60 shadow-lg shadow-tertiary" href="COUCOU">
+                    <img src="{%static '/svg/paint.svg'%}" alt="billet" class="px-5 py-5 size-24">
+                    <p class="pe-5">Epreuves</p>
+                </a>
+                <a class="inline-flex border rounded-lg place-items-center bg-primary hover:bg-secondary duration-500 w-60 shadow-lg shadow-tertiary" href="COUCOU">
+                    <img src="{%static '/svg/billet.svg'%}" alt="billet" class="px-5 py-5 size-24">
+                    <p class="pe-5">Billetterie</p>
+                </a>
+            </div>
+        </div>
+
             <div>
                 <p class="py-5 pt-32">
                     <b>Centrale Lille</b> vous accueille pour la 7e édition des Intercentrales des Arts !
@@ -37,9 +51,10 @@
                     Que vous pratiquiez la musique, le théâtre, la magie ou la danse, menez votre école jusqu’à la victoire.
                 </p>
                 <p class="py-5">
-                    La liste des épreuves et leurs catégories seront dévoilés sur ce site ainsi que sur l'Instagram des ICAres.
+                    La liste des épreuves et leurs catégories seront dévoilées sur ce site ainsi que sur l'Instagram des ICAres.
                 </p>
             </div>
+            <div class="xl:block hidden">
             <div class="grid grid-cols-2 py-10 pt-20 place-items-center">
                 <a class="inline-flex border rounded-lg place-items-center bg-primary hover:bg-secondary duration-500 w-60 shadow-lg shadow-tertiary" href="COUCOU">
                     <img src="{%static '/svg/paint.svg'%}" alt="billet" class="px-5 py-5 size-24">
@@ -50,11 +65,11 @@
                     <p class="pe-5">Billetterie</p>
                 </a>
             </div>
+        </div>
 
         </div>
 
     </div>
-
 
     <footer>
         <p class="text-right text-white px-2 absolute bottom-0 right-0">Développé par <a href="https://github.com/mrimbert" class="hover:text-primary duration-500">Mathis Rimbert</a></p>

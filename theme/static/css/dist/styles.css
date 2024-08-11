@@ -804,6 +804,10 @@ select {
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -816,6 +820,10 @@ select {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .size-24 {
   width: 6rem;
   height: 6rem;
@@ -825,20 +833,24 @@ select {
   height: 100vh;
 }
 
+.max-h-96 {
+  max-height: 24rem;
+}
+
 .w-60 {
   width: 15rem;
 }
 
-.max-w-prose {
-  max-width: 65ch;
-}
-
-.max-w-screen-lg {
-  max-width: 1024px;
+.max-w-screen-sm {
+  max-width: 640px;
 }
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -847,10 +859,6 @@ select {
 
 .flex-col {
   flex-direction: column;
-}
-
-.place-items-start {
-  place-items: start;
 }
 
 .place-items-center {
@@ -865,12 +873,20 @@ select {
   justify-content: center;
 }
 
-.gap-64 {
-  gap: 16rem;
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.gap-32 {
+  gap: 8rem;
 }
 
 .place-self-center {
   place-self: center;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 
 .rounded-lg {
@@ -897,6 +913,11 @@ select {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-5 {
@@ -985,6 +1006,38 @@ select {
 }
 
 @media (min-width: 1280px) {
+  .xl\:block {
+    display: block;
+  }
+
+  .xl\:hidden {
+    display: none;
+  }
+
+  .xl\:max-w-prose {
+    max-width: 65ch;
+  }
+
+  .xl\:max-w-screen-lg {
+    max-width: 1024px;
+  }
+
+  .xl\:flex-row {
+    flex-direction: row;
+  }
+
+  .xl\:flex-col {
+    flex-direction: column;
+  }
+
+  .xl\:place-items-start {
+    place-items: start;
+  }
+
+  .xl\:gap-64 {
+    gap: 16rem;
+  }
+
   .xl\:bg-center {
     background-position: center;
   }
