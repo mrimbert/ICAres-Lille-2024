@@ -45,13 +45,13 @@ module.exports = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#ffb22e' /* Jaune PainGouin */
+                    DEFAULT: '#8038F7B2' /* Violet ICares */
                 },
                 secondary: {
-                    DEFAULT: '#2f281e' /* Marron PainGouin */
+                    DEFAULT: '#A64FFEB2' /* Rose ICAres */
                 },
                 tertiary: {
-                    DEFAULT: '#eca054' /*Marron plus clair*/
+                    DEFAULT: '#D38FF43B' /*Rose plus clair*/
                 },
                 quaternary: {
                     DEFAULT: '#FFF6F6' /* Orange de fond assez sympa*/
