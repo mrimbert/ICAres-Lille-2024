@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, "icares/index.html")
+
+def epreuve(request):
+    return render(request, "icares/epreuve.html")

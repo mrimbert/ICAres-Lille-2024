@@ -833,10 +833,6 @@ select {
   height: 100vh;
 }
 
-.max-h-96 {
-  max-height: 24rem;
-}
-
 .w-60 {
   width: 15rem;
 }
@@ -861,6 +857,10 @@ select {
   flex-direction: column;
 }
 
+.place-items-start {
+  place-items: start;
+}
+
 .place-items-center {
   place-items: center;
 }
@@ -875,6 +875,10 @@ select {
 
 .gap-10 {
   gap: 2.5rem;
+}
+
+.gap-20 {
+  gap: 5rem;
 }
 
 .gap-32 {
@@ -895,6 +899,10 @@ select {
 
 .border {
   border-width: 1px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
 }
 
 .bg-gray-50 {
@@ -960,6 +968,11 @@ select {
   line-height: 2rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -989,6 +1002,12 @@ select {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.backdrop-blur-sm {
+  --tw-backdrop-blur: blur(4px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
 .duration-500 {
   transition-duration: 500ms;
 }
@@ -1005,7 +1024,21 @@ select {
   color: #8038F7B2;
 }
 
+.hover\:text-secondary:hover {
+  color: #A64FFEB2;
+}
+
+@media (min-width: 640px) {
+  .sm\:static {
+    position: static;
+  }
+}
+
 @media (min-width: 1280px) {
+  .xl\:absolute {
+    position: absolute;
+  }
+
   .xl\:block {
     display: block;
   }

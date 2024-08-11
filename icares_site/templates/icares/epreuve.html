@@ -1,0 +1,47 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   {% tailwind_css %}
+
+   <title>ICAres 2024</title>
+
+   <link rel="shortcut icon" href="{%static '/logo/logo.ico'%}" type="image/x-icon">
+
+
+</head>
+
+<body class="font-abeezee bg-index bg-cover xl:bg-center overflow-x-hidden">
+    <header class="flex flex-row place-items-start gap-20 items-center backdrop-blur-sm	border-b-2">
+
+        <div class="inline-flex">
+            <div>
+                <img src="{%static '/logo/logo_petit.png'%}" alt="Logo Icares">
+            </div>
+            <div class="place-self-center">
+                <img src="{%static '/image/titre_petit.png'%}" alt="Icares 2024">
+            </div>
+        </div>
+
+        <div class="text-3xl text-white">
+            <a href="" class="hover:text-secondary duration-500">Accueil</a>
+        </div>
+
+        <div class="text-3xl text-white">
+            <a href="" class="hover:text-secondary duration-500">Epreuves</a>
+        </div>
+
+        <div class="text-3xl text-white">
+            <a href="" class="hover:text-secondary duration-500">Billetterie</a>
+        </div>
+
+    </header>
+
+
+    <footer>
+        <p class="text-right text-white px-2 xl:absolute sm:static absolute bottom-0 right-0">Développé par <a href="https://github.com/mrimbert" class="hover:text-secondary duration-500">Mathis Rimbert</a></p>
+    </footer>
+</body>
