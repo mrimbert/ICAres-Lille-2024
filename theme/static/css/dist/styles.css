@@ -968,20 +968,12 @@ select {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .duration-500 {
   transition-duration: 500ms;
 }
 
 .bg-index{
-  background-image: url(./bg.webp);
+  background-image: url(./bg3.jpg);
 }
 
 .hover\:bg-secondary:hover {
@@ -993,7 +985,7 @@ select {
 }
 
 @media (min-width: 1280px) {
-  .xl\:bg-\[center_bottom_-45rem\] {
-    background-position: center bottom -45rem;
+  .xl\:bg-center {
+    background-position: center;
   }
 }
