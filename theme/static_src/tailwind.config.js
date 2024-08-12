@@ -43,6 +43,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            spacing: {
+                '128': '32rem',
+            },
             colors: {
                 primary: {
                     DEFAULT: '#8038F7B2' /* Violet ICares */
@@ -54,7 +57,7 @@ module.exports = {
                     DEFAULT: '#D38FF43B' /*Rose plus clair*/
                 },
                 quaternary: {
-                    DEFAULT: '#FFF6F6' /* Orange de fond assez sympa*/
+                    DEFAULT: '#8038F773' /* Violet transparent*/
                 },
                 gris: {
                     DEFAULT: '#F8F8F9',

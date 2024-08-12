@@ -804,6 +804,10 @@ select {
   margin-right: auto;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -833,6 +837,14 @@ select {
   height: 100vh;
 }
 
+.max-h-80 {
+  max-height: 20rem;
+}
+
+.w-128 {
+  width: 32rem;
+}
+
 .w-60 {
   width: 15rem;
 }
@@ -845,8 +857,16 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -889,8 +909,16 @@ select {
   place-self: center;
 }
 
+.justify-self-start {
+  justify-self: start;
+}
+
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .rounded-lg {
@@ -914,8 +942,17 @@ select {
   background-color: #8038F7B2;
 }
 
+.bg-quaternary {
+  background-color: #8038F773;
+}
+
 .bg-cover {
   background-size: cover;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .px-2 {
@@ -938,8 +975,17 @@ select {
   padding-bottom: 2.5rem;
 }
 
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .py-5 {
   padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.pb-5 {
   padding-bottom: 1.25rem;
 }
 
@@ -953,6 +999,14 @@ select {
 
 .pt-32 {
   padding-top: 8rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-right {
@@ -1020,10 +1074,6 @@ select {
   background-color: #A64FFEB2;
 }
 
-.hover\:text-primary:hover {
-  color: #8038F7B2;
-}
-
 .hover\:text-secondary:hover {
   color: #A64FFEB2;
 }
@@ -1073,5 +1123,11 @@ select {
 
   .xl\:bg-center {
     background-position: center;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
