@@ -8,5 +8,6 @@ from django.conf import settings
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("epreuve", views.epreuve, name="epreuve")
+    path("epreuve", views.epreuve, name="epreuve"),
+    path("detail/<id>", views.detail, name="detail"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

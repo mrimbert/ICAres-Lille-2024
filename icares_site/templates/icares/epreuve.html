@@ -60,7 +60,7 @@
     {%if epreuve%}
     <div class="grid 2xl:grid-cols-3 grid-rows-3 py-10 place-items-center">
         {%for ep in epreuve%}
-            <a class="border max-h-80 w-128 bg-quaternary rounded mt-10">
+            <a class="border max-h-80 w-128 bg-quaternary rounded mt-10 hover:bg-secondary duration-500" href="detail/{{ep.id}}">
                 <div class="flex justify-center pt-5"><img src="{{MEDIA_URL}}{{ep.logo}}" alt="epreuve image" class="place-self-center"></div>
                 <p class="text-center text-white font-2xl pt-5 pb-5">{{ep.nom}}</p>
             </a>

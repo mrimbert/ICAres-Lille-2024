@@ -1,0 +1,75 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   {% tailwind_css %}
+
+   <title>ICAres 2024</title>
+
+   <link rel="shortcut icon" href="{%static '/logo/logo.ico'%}" type="image/x-icon">
+
+
+</head>
+
+<body class="font-abeezee bg-index bg-cover xl:bg-center overflow-x-hidden">
+    <div class="xl:block hidden">
+    <header class="flex flex-row place-items-start gap-20 items-center backdrop-blur-sm	border-b-2">
+
+        <div class="inline-flex">
+            <div>
+                <img src="{%static '/logo/logo_petit.png'%}" alt="Logo Icares">
+            </div>
+            <div class="place-self-center">
+                <img src="{%static '/image/titre_petit.png'%}" alt="Icares 2024">
+            </div>
+        </div>
+
+        <div class="text-3xl text-white">
+            <a href="{%url 'index'%}" class="hover:text-secondary duration-500">Accueil</a>
+        </div>
+
+        <div class="text-3xl text-white">
+            <a href="{%url 'epreuve'%}" class="hover:text-secondary duration-500">Epreuves</a>
+        </div>
+
+        <div class="text-3xl text-white">
+            <a href="" class="hover:text-secondary duration-500">Billetterie</a>
+        </div>
+    </header>
+</div>
+
+<div class="block xl:hidden">
+    <header class="grid grid-cols-3 place-items-center gap-20 items-center backdrop-blur-sm	border-b-2">
+        <a href="{%url 'index'%}" class="justify-self-start px-10"><img src="{%static '/svg/fleche.svg/'%}" alt="fleche"></a>
+
+        <div class="inline-flex">
+            <div>
+                <img src="{%static '/logo/logo_petit.png'%}" alt="Logo Icares">
+            </div>
+            <div class="place-self-center">
+                <img src="{%static '/image/titre_petit.png'%}" alt="Icares 2024">
+            </div>
+        </div>
+
+    </header>
+</div>
+
+<div>
+    <div class="flex justify-center pt-5"><img src="{{MEDIA_URL}}{{epreuve.logo}}" alt="epreuve image" class="place-self-center"></div>
+    <p class="text-center text-white font-3xl pt-3">{{epreuve.nom}}</p>
+    <p class="text-center text-white font-3xl pb-5">{{epreuve.soustheme}}</p>
+</div>
+
+<ul class="list-disc text-white font-3xl px-20">
+    <li><b>Nombre de participants :</b> {{epreuve.nombre_de_participant}}</li>
+    <li><b>Durée de l'épreuve :</b> {{epreuve.duree}}</li>
+    <li class="max-w-prose leading-relaxed py-5"><b>Description :</b> {{epreuve.description}}</li>
+    <li><b>Modalités :</b> {{epreuve.modalites}}</li>
+
+</ul>
+
+
+</body>
