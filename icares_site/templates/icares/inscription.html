@@ -1,0 +1,55 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   {% tailwind_css %}
+
+   <title>ICAres 2024</title>
+
+   <link rel="shortcut icon" href="{%static '/logo/logo.ico'%}" type="image/x-icon">
+
+
+</head>
+
+<body class="font-abeezee bg-index bg-cover xl:bg-center overflow-x-hidden">
+    <div class="xl:block hidden">
+        <header class="flex flex-row place-items-start gap-20 items-center backdrop-blur-sm	border-b-2">
+    
+            <div class="inline-flex">
+                <div>
+                    <img src="{%static '/logo/logo_petit.png'%}" alt="Logo Icares">
+                </div>
+                <div class="place-self-center">
+                    <img src="{%static '/image/titre_petit.png'%}" alt="Icares 2024">
+                </div>
+            </div>
+    
+            <div class="text-3xl text-white">
+                <a href="{%url 'index'%}" class="hover:text-secondary duration-500">Accueil</a>
+            </div>
+    
+            <div class="text-3xl text-white">
+                <a href="{%url 'epreuve'%}" class="hover:text-secondary duration-500">Epreuves</a>
+            </div>
+    
+            <div class="text-3xl text-white">
+                <a href="" class="hover:text-secondary duration-500">Billetterie</a>
+            </div>
+        </header>
+    </div>
+
+    <form method="post">
+        {%csrf_token%}
+        {{ form.as_p }}
+    
+        <div class="flex justify-center flex-row">
+            <button type="submit" class="w-96 bg-inherit border-primary text-primary font-montserrat rounded-lg inline-block box-border border-2 rounded-x1 hover:bg-primary hover:text-white duration-1000 h-12 font-bold align-middle">Se connecter</button>
+        </div>
+    </form>
+
+</body>
+
+

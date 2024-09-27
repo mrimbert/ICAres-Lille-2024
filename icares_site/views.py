@@ -1,6 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 
 from .models import Epreuve
+
+from . import forms
+
+import json
+
 # Create your views here.
 
 def index(request):
@@ -19,3 +24,16 @@ def detail(request, id):
     context = {"epreuve":epreuve_get}
 
     return render(request, "icares/detail.html", context)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = forms.UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.email = form.cleaned_data.get('email')
+            user.save()
+            return redirect('login')
+    else:
+        form = forms.UserRegistrationForm()
+    return render(request, 'icares/inscription.html', {'form': form})
