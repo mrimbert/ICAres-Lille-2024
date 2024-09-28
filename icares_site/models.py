@@ -44,8 +44,13 @@ class User(AbstractBaseUser):
     tel = models.CharField(max_length=20, blank=True)
     ecole = models.CharField(max_length=200)
     isParticipant = models.BooleanField(default=False)
-    formule = models.IntegerField()
+    formule = models.IntegerField(default=0)
     epreuve = models.ManyToManyField('Epreuve')
+
+
+    is_active = models.BooleanField(default=True)  # Utilisateur actif ou non
+    is_staff = models.BooleanField(default=False)  # Indique si l'utilisateur est membre du staff (accès admin)
+    is_superuser = models.BooleanField(default=False)  # Indique si l'utilisateur est super utilisateur (droits complets)
 
     USERNAME_FIELD = 'email'  # L'email est utilisé comme identifiant unique pour l'authentification
     REQUIRED_FIELDS = ['nom', 'prenom', 'ecole']  # Champs obligatoires en plus du mot de passe
@@ -54,3 +59,9 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+    
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
