@@ -1,5 +1,6 @@
 {% load static tailwind_tags %}
 {% load static %}
+{% load widget_tweaks %}
 
 <head>
     <link rel="stylesheet" href="{%static 'style.css'%}">
@@ -41,14 +42,69 @@
         </header>
     </div>
 
-    <form method="post">
-        {%csrf_token%}
-        {{ form.as_p }}
-    
-        <div class="flex justify-center flex-row">
-            <button type="submit" class="w-96 bg-inherit border-primary text-primary font-montserrat rounded-lg inline-block box-border border-2 rounded-x1 hover:bg-primary hover:text-white duration-1000 h-12 font-bold align-middle">Se connecter</button>
+    <h1 class="text-3xl text-center font-bebas py-10 text-white">Inscription aux ICAres</h1>
+    <form class="max-w-lg mx-auto pt-5 pb-10" method="post">
+        {% if form.errors %}
+
+            <div id="alert-4" class="flex items-center p-4 mb-4 text-yellow-800 rounded-lg bg-yellow-50" role="alert">
+                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div class="ms-3 text-sm font-medium">
+                    {{ form.errors }}
+                </div>
+            </div>
+        {% endif %}
+        {% csrf_token %}
+        <div class="mb-5">
+          <label for="nom" class="block mb-2 text-sm font-medium text-white font-montserrat">Nom :</label>
+          {%render_field form.nom class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
         </div>
-    </form>
+        <div class="mb-5">
+        <div class="mb-5">
+                <label for="prenom" class="block mb-2 text-sm font-medium text-white font-montserrat">Prénom : </label>
+                {%render_field form.prenom class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Mot de passe : </label>
+            {%render_field form.password class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Confirmer le mot de passe :</label>
+            {%render_field form.password_confirm class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Mail :</label>
+            {%render_field form.email class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Téléphone : </label>
+            {%render_field form.tel class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Ecole :  </label>
+            {%render_field form.ecole class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Etes-vous un participant ou un spectateur ?</label>
+            {%render_field form.isParticipant class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
+
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Formule choisie :</label>
+            {%render_field form.formule class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
+
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Epreuve(s) sélectionnée(s)</label>
+            {%render_field form.epreuve class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
+
+        </div>
+        <div class="flex justify-center flex-row">
+            <button type="submit" class="w-96 bg-primary hover:bg-secondary duration-500 text-lg border text-white font-montserrat rounded-lg inline-block box-border border-2 rounded-x1 h-12 align-middle shadow-lg shadow-tertiary">S'inscrire</button>
+        </div>
+      </form>
 
 </body>
 

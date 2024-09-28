@@ -11,4 +11,6 @@ urlpatterns = [
     path("epreuve", views.epreuve, name="epreuve"),
     path("detail/<id>", views.detail, name="detail"),
     path("inscription", views.register, name="inscription"),
+    path("connexion", views.custom_login, name="connexion"),
+    path("information", views.information, name="information"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

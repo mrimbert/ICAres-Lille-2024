@@ -1,0 +1,78 @@
+{% load static tailwind_tags %}
+{% load static %}
+{% load widget_tweaks %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   {% tailwind_css %}
+
+   <title>ICAres 2024</title>
+
+   <link rel="shortcut icon" href="{%static '/logo/logo.ico'%}" type="image/x-icon">
+
+
+</head>
+
+<body class="font-abeezee bg-index bg-cover xl:bg-center overflow-x-hidden">
+    <div class="xl:block hidden">
+        <header class="flex flex-row place-items-start gap-20 items-center backdrop-blur-sm	border-b-2">
+    
+            <div class="inline-flex">
+                <div>
+                    <img src="{%static '/logo/logo_petit.png'%}" alt="Logo Icares">
+                </div>
+                <div class="place-self-center">
+                    <img src="{%static '/image/titre_petit.png'%}" alt="Icares 2024">
+                </div>
+            </div>
+    
+            <div class="text-3xl text-white">
+                <a href="{%url 'index'%}" class="hover:text-secondary duration-500">Accueil</a>
+            </div>
+    
+            <div class="text-3xl text-white">
+                <a href="{%url 'epreuve'%}" class="hover:text-secondary duration-500">Epreuves</a>
+            </div>
+    
+            <div class="text-3xl text-white">
+                <a href="" class="hover:text-secondary duration-500">Billetterie</a>
+            </div>
+        </header>
+    </div>
+
+    <h1 class="text-3xl text-center font-bebas py-10 text-white">Connexion à votre compte ICAres</h1>
+    <form class="max-w-lg mx-auto pt-5 pb-10" method="post">
+        {% if form.errors %}
+
+            <div id="alert-4" class="flex items-center p-4 mb-4 text-yellow-800 rounded-lg bg-yellow-50" role="alert">
+                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div class="ms-3 text-sm font-medium">
+                    {{ form.errors }}
+                </div>
+            </div>
+        {% endif %}
+        {% csrf_token %}
+        <div class="mb-5">
+          <label for="nom" class="block mb-2 text-sm font-medium text-white font-montserrat">Mail :</label>
+          {%render_field form.email class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+        <div class="mb-5">
+        <div class="mb-5">
+                <label for="prenom" class="block mb-2 text-sm font-medium text-white font-montserrat">Mot de passe : </label>
+                {%render_field form.password class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
+        </div>
+
+        <div class="flex justify-center flex-row">
+            <button type="submit" class="w-96 bg-primary hover:bg-secondary duration-500 text-lg border text-white font-montserrat rounded-lg inline-block box-border border-2 rounded-x1 h-12 align-middle shadow-lg shadow-tertiary">Se connecter</button>
+        </div>
+      </form>
+      <div class="flex justify-center flex-row py-10">
+        <a href="{%url 'inscription'%}"><button type="button"  class="w-96 bg-primary hover:bg-secondary duration-500 text-lg border text-white font-montserrat rounded-lg inline-block box-border border-2 rounded-x1 h-12 align-middle shadow-lg shadow-tertiary">Pas encore de compte ? S'inscrire</button></a>
+    </div>
+
+</body>

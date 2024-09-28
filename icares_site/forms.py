@@ -1,6 +1,6 @@
 from django import forms
 from .models import User, Epreuve
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -52,3 +52,16 @@ class UserRegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+
+class CustomLoginForm(forms.Form):
+    email = forms.EmailField(label='Email')  # On utilise 'email' au lieu de 'username'
+    password = forms.CharField(widget=forms.PasswordInput, label='Mot de passe')
+
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+        user = authenticate(username=email, password=password)
+        if not user:
+            raise forms.ValidationError("Email ou mot de passe incorrect.")
+        return self.cleaned_data
