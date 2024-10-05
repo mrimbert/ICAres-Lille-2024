@@ -1,6 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
+from django.contrib.contenttypes.models import ContentType
 # Create your models here.
+
+class Lien(models.Model):
+    lille = models.CharField(max_length=300)
+    lyon = models.CharField(max_length=300)
+    paris = models.CharField(max_length=300)
+    marseille = models.CharField(max_length=300)
+    nantes = models.CharField(max_length=300)
 
 class Epreuve(models.Model):
     nom = models.CharField(max_length=200)
@@ -36,32 +44,67 @@ class UserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
+
+    FORMULE_CHOICES = [
+        (1, 'Entrée'),
+        (2, 'Entrée + Repas'),
+        (3, 'Entrée + Repas + Logement'),
+    ]
+
+    PARTICIPANT_CHOICES = [
+        (0, 'Participant'),
+        (1, 'Spectateur'),
+        (2, 'Jury'),
+    ]
+
     nom = models.CharField(max_length=200)
     prenom = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)  # Ce champ est géré par AbstractBaseUser
     tel = models.CharField(max_length=20, blank=True)
     ecole = models.CharField(max_length=200)
-    isParticipant = models.BooleanField(default=False)
-    formule = models.IntegerField(default=0)
+    isParticipant = models.IntegerField(choices=PARTICIPANT_CHOICES,default=0, verbose_name="Etat")
+    formule = models.IntegerField(choices=FORMULE_CHOICES, null=True, blank=True)
     epreuve = models.ManyToManyField('Epreuve')
+    has_paid = models.BooleanField(default=False)
 
-
-    is_active = models.BooleanField(default=True)  # Utilisateur actif ou non
-    is_staff = models.BooleanField(default=False)  # Indique si l'utilisateur est membre du staff (accès admin)
-    is_superuser = models.BooleanField(default=False)  # Indique si l'utilisateur est super utilisateur (droits complets)
-
-    USERNAME_FIELD = 'email'  # L'email est utilisé comme identifiant unique pour l'authentification
-    REQUIRED_FIELDS = ['nom', 'prenom', 'ecole']  # Champs obligatoires en plus du mot de passe
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['nom', 'prenom']
 
     objects = UserManager()
 
     def __str__(self):
-        return self.email
+        return f"{self.nom} {self.prenom} ({self.email})"
     
-    def has_perm(self, perm, obj=None):
-        return True
 
-    def has_module_perms(self, app_label):
-        return True
+
+def create_user_groups(sender, **kwargs):
+    # Création des groupes
+    organisateur, _ = Group.objects.get_or_create(name='Organisateur')
+    tresorier, _ = Group.objects.get_or_create(name='Trésorier')
+
+    # Obtenir le content type du modèle User
+    user_content_type = ContentType.objects.get_for_model(User)
+    epreuve_content_type = ContentType.objects.get_for_model(Epreuve)
+
+    # Permissions Organisateur (trésorier) -> Voir Nom, Prénom, Formule, Épreuves + Export CSV
+    organisateur_permissions = Permission.objects.filter(
+        content_type=user_content_type,
+        codename__in=['view_user', 'export_csv', 'change_user', 'mark_as_paid', "view_epreuve", "change_epreuve", "add_epreuve"]
+    )
+    organisateur.permissions.set(organisateur_permissions)
+
+    epreuve_permissions = Permission.objects.filter(
+        content_type=epreuve_content_type
+    )
+    organisateur.permissions.add(*epreuve_permissions)
+
+    # Permissions Trésorier des autres écoles -> Voir Nom, Prénom, Formule, Épreuves + Gestion paiement
+    tresorier_autres_permissions = Permission.objects.filter(
+        content_type=user_content_type,
+        codename__in=['view_user', 'mark_as_paid', 'export_csv']
+    )
+    tresorier.permissions.set(tresorier_autres_permissions)

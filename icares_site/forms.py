@@ -23,8 +23,9 @@ class UserRegistrationForm(forms.ModelForm):
     ]
 
     PARTICIPANT_CHOICES = [
-        (True, 'Participant'),
-        (False, 'Spectateur'),
+        (0, 'Participant'),
+        (1, 'Spectateur'),
+        (2, 'Jury'),
     ]
 
     # Champs du formulaire

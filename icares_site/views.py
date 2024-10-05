@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 
-from .models import Epreuve
+from .models import Epreuve, create_user_groups
 
 from . import forms
 
@@ -10,12 +10,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 
-
-import json
-
 # Create your views here.
 
 def index(request):
+    create_user_groups(None)
     return render(request, "icares/index.html")
 
 def epreuve(request):
@@ -40,7 +38,7 @@ def register(request):
             user = form.save(commit=False)
             user.email = form.cleaned_data.get('email')
             user.save()
-            return redirect('custom_login')
+            return redirect('connexion')
     else:
         form = forms.UserRegistrationForm()
     return render(request, 'icares/inscription.html', {'form': form})
