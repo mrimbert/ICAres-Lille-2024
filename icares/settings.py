@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rxldufin02jl&ws(q3wn*aaz)_kn_ozz)pr=s#648rspdm5@t7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["icares.rezoleo.fr", "www.icares.rezoleo.fr"]
 
+CSRF_TRUSTED_ORIGINS = ["https://icares.rezoleo.fr"]
 
 INTERNAL_IPS = [
     "127.0.0.1",

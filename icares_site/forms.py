@@ -66,3 +66,40 @@ class CustomLoginForm(forms.Form):
         if not user:
             raise forms.ValidationError("Email ou mot de passe incorrect.")
         return self.cleaned_data
+    
+
+
+class UserUpdateForm(forms.ModelForm):
+    ECOLE_CHOICES = [
+        ('Lyon', 'Lyon'),
+        ('Lille', 'Lille'),
+        ('Marseille', 'Marseille'),
+        ('Paris', 'Paris'),
+        ('Nantes', 'Nantes'),
+    ]
+
+    FORMULE_CHOICES = [
+        (1, 'Entrée'),
+        (2, 'Entrée + Repas'),
+        (3, 'Entrée + Repas + Logement'),
+    ]
+
+    PARTICIPANT_CHOICES = [
+        (0, 'Participant'),
+        (1, 'Spectateur'),
+        (2, 'Jury'),
+    ]
+
+    ecole = forms.ChoiceField(choices=ECOLE_CHOICES, label='École')
+    formule = forms.ChoiceField(choices=FORMULE_CHOICES, label='Formule')
+    isParticipant = forms.ChoiceField(choices=PARTICIPANT_CHOICES, label='Statut')
+
+    class Meta:
+        model = User
+        fields = ['nom', 'prenom', 'email', 'tel', 'ecole', 'isParticipant', 'formule', 'epreuve']
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save()
+        return user

@@ -4,11 +4,11 @@ from django.contrib.contenttypes.models import ContentType
 # Create your models here.
 
 class Lien(models.Model):
-    lille = models.CharField(max_length=300)
-    lyon = models.CharField(max_length=300)
-    paris = models.CharField(max_length=300)
-    marseille = models.CharField(max_length=300)
-    nantes = models.CharField(max_length=300)
+    lille = models.CharField(max_length=300, default="None")
+    lyon = models.CharField(max_length=300, default="None")
+    paris = models.CharField(max_length=300, default="None")
+    marseille = models.CharField(max_length=300, default="None")
+    nantes = models.CharField(max_length=300, default="None")
 
 class Epreuve(models.Model):
     nom = models.CharField(max_length=200)
@@ -89,6 +89,7 @@ def create_user_groups(sender, **kwargs):
     # Obtenir le content type du modèle User
     user_content_type = ContentType.objects.get_for_model(User)
     epreuve_content_type = ContentType.objects.get_for_model(Epreuve)
+    lien_content_type = ContentType.objects.get_for_model(Lien)
 
     # Permissions Organisateur (trésorier) -> Voir Nom, Prénom, Formule, Épreuves + Export CSV
     organisateur_permissions = Permission.objects.filter(
@@ -101,6 +102,11 @@ def create_user_groups(sender, **kwargs):
         content_type=epreuve_content_type
     )
     organisateur.permissions.add(*epreuve_permissions)
+
+    lien_permissions = Permission.objects.filter(
+        content_type = lien_content_type,
+    )
+    organisateur.permissions.add(*lien_permissions)
 
     # Permissions Trésorier des autres écoles -> Voir Nom, Prénom, Formule, Épreuves + Gestion paiement
     tresorier_autres_permissions = Permission.objects.filter(

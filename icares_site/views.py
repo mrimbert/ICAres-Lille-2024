@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 
-from .models import Epreuve, create_user_groups
+from .models import Epreuve, create_user_groups, Lien
 
 from . import forms
 
@@ -61,4 +61,15 @@ def custom_login(request):
 
 @login_required
 def information(request):
-    return render(request, 'icares/information.html')
+    lien = list(Lien.objects.filter(id=1).values()[0].values())
+
+    if request.method == 'POST':
+        form = forms.UserUpdateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = forms.UserUpdateForm(instance=request.user)
+
+    
+    return render(request, 'icares/information.html', context={"form":form, "lien":lien})
