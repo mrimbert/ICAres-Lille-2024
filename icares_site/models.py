@@ -55,7 +55,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     PARTICIPANT_CHOICES = [
         (0, 'Participant'),
         (1, 'Spectateur'),
-        (2, 'Jury'),
     ]
 
     nom = models.CharField(max_length=200)
@@ -64,8 +63,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     tel = models.CharField(max_length=20, blank=True)
     ecole = models.CharField(max_length=200)
     isParticipant = models.IntegerField(choices=PARTICIPANT_CHOICES,default=0, verbose_name="Etat")
+    isJury = models.BooleanField(default=False, verbose_name="Jury")
     formule = models.IntegerField(choices=FORMULE_CHOICES, null=True, blank=True)
-    epreuve = models.ManyToManyField('Epreuve')
+    epreuve = models.ManyToManyField('Epreuve', related_name='participants')
+    epreuve_jury = models.ManyToManyField('Epreuve', related_name='jury_members', blank=True)
     has_paid = models.BooleanField(default=False)
 
     is_active = models.BooleanField(default=True)

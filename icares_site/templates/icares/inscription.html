@@ -87,18 +87,27 @@
             {%render_field form.ecole class="bg-gray-50 border font-montserrat border-gray-300 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5"%}
         </div>
         <div class="mb-5">
-            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Etes-vous un participant ou un spectateur ?</label>
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Etes-vous un participant ou spectateur d'une épreuve ?</label>
             {%render_field form.isParticipant class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
-
-        </div>
-        <div class="mb-5">
-            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Formule choisie :</label>
-            {%render_field form.formule class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
 
         </div>
         <div class="mb-5">
             <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Epreuve(s) sélectionnée(s)</label>
             {%render_field form.epreuve class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
+
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Etes-vous jury d'une ou de plusieurs épreuves ?</label>
+            {%render_field form.isJury class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
+
+        </div>
+        <div class="mb-5 epreuve-jury-container">
+            <label for="epreuve_jury" class="block mb-2 text-sm font-medium text-white font-montserrat">Epreuve(s) dont vous êtes jury :</label>
+            {% render_field form.epreuve_jury class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5" %}
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="block mb-2 text-sm font-medium text-white font-montserrat">Formule choisie :</label>
+            {%render_field form.formule class="bg-white border border-gray-500 border-2 font-montserrat border-gray-50 text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"%}
 
         </div>
         <div class="flex justify-center flex-row">
@@ -109,3 +118,21 @@
 </body>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var isJuryCheckbox = document.querySelector('input[name="isJury"]');
+        var epreuveJuryField = document.querySelector('.epreuve-jury-container');
+
+        function toggleEpreuveJuryField() {
+            if (isJuryCheckbox.checked) {
+                epreuveJuryField.style.display = 'block';
+            } else {
+                epreuveJuryField.style.display = 'none';
+            }
+        }
+
+        toggleEpreuveJuryField();
+
+        isJuryCheckbox.addEventListener('change', toggleEpreuveJuryField);
+    });
+</script>

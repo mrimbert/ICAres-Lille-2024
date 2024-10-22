@@ -25,7 +25,6 @@ class UserRegistrationForm(forms.ModelForm):
     PARTICIPANT_CHOICES = [
         (0, 'Participant'),
         (1, 'Spectateur'),
-        (2, 'Jury'),
     ]
 
     # Champs du formulaire
@@ -35,7 +34,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['nom', 'prenom', 'email', 'tel', 'ecole', 'isParticipant', 'formule', 'epreuve']
+        fields = ['nom', 'prenom', 'email', 'tel', 'ecole', 'isParticipant', 'isJury', 'epreuve_jury', 'formule', 'epreuve']
 
     def clean(self):
         cleaned_data = super().clean()
@@ -87,7 +86,6 @@ class UserUpdateForm(forms.ModelForm):
     PARTICIPANT_CHOICES = [
         (0, 'Participant'),
         (1, 'Spectateur'),
-        (2, 'Jury'),
     ]
 
     ecole = forms.ChoiceField(choices=ECOLE_CHOICES, label='École')
@@ -96,7 +94,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['nom', 'prenom', 'email', 'tel', 'ecole', 'isParticipant', 'formule', 'epreuve']
+        fields = ['nom', 'prenom', 'email', 'tel', 'ecole', 'isParticipant', 'isJury', 'epreuve_jury', 'formule', 'epreuve']
 
     def save(self, commit=True):
         user = super().save(commit=False)
