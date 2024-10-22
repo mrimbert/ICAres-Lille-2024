@@ -5,7 +5,7 @@ from .models import Epreuve, create_user_groups, Lien
 from . import forms
 
 from .forms import CustomLoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
@@ -58,6 +58,11 @@ def custom_login(request):
         form = CustomLoginForm()
 
     return render(request, 'icares/connexion.html', {'form': form})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect(index)
 
 @login_required
 def information(request):
